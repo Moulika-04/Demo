@@ -1,0 +1,1583 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>TRINETRA | Elderly Safety Intelligence</title>
+
+<style>
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Segoe UI", Arial, sans-serif;
+}
+
+body {
+    background: #07111f;
+    color: #eaf2ff;
+    min-height: 100vh;
+}
+
+/* ================= MAIN ================= */
+
+.main {
+    padding: 25px 30px;
+}
+
+/* ================= HEADER ================= */
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 25px;
+}
+
+.elderly-back-brand {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+}
+
+.elderly-back-link {
+    color: #9fb3c7;
+    font-size: 11px;
+    font-weight: 700;
+    text-decoration: none;
+}
+
+.elderly-back-link:hover {
+    color: #ffffff;
+}
+
+.header-brand {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.header-logo {
+    width: 76px;
+    height: 76px;
+    object-fit: contain;
+    background: #fff;
+    border-radius: 12px;
+}
+
+.header h1 {
+    font-size: 27px;
+}
+
+.header p {
+    color: #71879e;
+    margin-top: 5px;
+    font-size: 13px;
+}
+
+.header-right {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+}
+
+.logout-form {
+    margin: 0;
+}
+
+.logout-button {
+    padding: 9px 13px;
+    border: 1px solid #294256;
+    border-radius: 9px;
+    background: #0d1e30;
+    color: #b9c9d8;
+    cursor: pointer;
+    font-size: 12px;
+}
+
+.logout-button:hover {
+    border-color: #00c995;
+    color: #fff;
+}
+
+.system-status {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 15px;
+    background: #0d1e30;
+    border: 1px solid #1c3a4e;
+    border-radius: 30px;
+    font-size: 12px;
+}
+
+.status-dot {
+    width: 9px;
+    height: 9px;
+    background: #00e5a0;
+    border-radius: 50%;
+    box-shadow: 0 0 12px #00e5a0;
+}
+
+.profile {
+    width: 40px;
+    height: 40px;
+    background: linear-gradient(135deg,#246bce,#7346d9);
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+}
+
+/* ================= WELCOME ================= */
+
+.welcome {
+    background:
+        radial-gradient(circle at 90% 20%, rgba(0,229,160,.15), transparent 35%),
+        linear-gradient(110deg,#0d2234,#0b1828);
+    border: 1px solid #1b384e;
+    border-radius: 18px;
+    padding: 24px;
+    margin-bottom: 20px;
+    position: relative;
+    overflow: hidden;
+}
+
+.welcome-copy {
+    position: relative;
+    z-index: 1;
+    max-width: 65%;
+}
+
+.welcome-photo {
+    position: absolute;
+    right: 20px;
+    top: 50%;
+    width: 150px;
+    height: 112px;
+    transform: translateY(-50%);
+    object-fit: cover;
+    border: 1px solid #31556a;
+    border-radius: 12px;
+    box-shadow: 0 8px 24px rgba(0,0,0,.25);
+}
+
+.welcome h2 {
+    font-size: 22px;
+}
+
+.welcome p {
+    color: #8ba0b6;
+    margin-top: 7px;
+    font-size: 13px;
+}
+
+.scan-line {
+    position: absolute;
+    width: 250px;
+    height: 250px;
+    right: -50px;
+    top: -80px;
+    border: 1px solid rgba(0,229,160,.15);
+    border-radius: 50%;
+}
+
+.scan-line::after {
+    content: "";
+    position: absolute;
+    width: 180px;
+    height: 180px;
+    border: 1px solid rgba(0,168,255,.15);
+    border-radius: 50%;
+    top: 35px;
+    left: 35px;
+}
+
+/* ================= CARDS ================= */
+
+.stats {
+    display: grid;
+    grid-template-columns: repeat(4,1fr);
+    gap: 16px;
+    margin-bottom: 20px;
+}
+
+.card {
+    background: #0c1a2a;
+    border: 1px solid #1b3046;
+    border-radius: 15px;
+    padding: 18px;
+    transition: .25s;
+}
+
+.card:hover {
+    transform: translateY(-2px);
+    border-color: #2b536c;
+}
+
+.stat-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.stat-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 11px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+}
+
+.green {
+    background: rgba(0,229,160,.12);
+}
+
+.blue {
+    background: rgba(0,168,255,.12);
+}
+
+.yellow {
+    background: rgba(255,193,7,.12);
+}
+
+.red {
+    background: rgba(255,70,70,.12);
+}
+
+.stat-number {
+    font-size: 25px;
+    font-weight: 700;
+    margin-top: 15px;
+}
+
+.stat-label {
+    color: #71869c;
+    font-size: 12px;
+    margin-top: 4px;
+}
+
+/* ================= GRID ================= */
+
+.dashboard-grid {
+    display: grid;
+    grid-template-columns: 1.6fr 1fr;
+    gap: 18px;
+}
+
+.section-card {
+    background: #0c1a2a;
+    border: 1px solid #1b3046;
+    border-radius: 16px;
+    padding: 20px;
+}
+
+.section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 18px;
+}
+
+.section-header h3 {
+    font-size: 16px;
+}
+
+.section-header span {
+    font-size: 11px;
+    color: #60758a;
+}
+
+/* ================= CAMERA ================= */
+
+.camera {
+    height: 300px;
+    border-radius: 13px;
+    background: #03080d;
+    position: relative;
+    overflow: hidden;
+    border: 1px solid #294256;
+}
+
+.camera-frame {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    background: #03080d;
+}
+
+.camera-grid {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background-image:
+        linear-gradient(rgba(255,255,255,.035) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,.035) 1px, transparent 1px);
+    background-size: 40px 40px;
+}
+
+.camera-label {
+    position: absolute;
+    z-index: 2;
+    left: 13px;
+    top: 12px;
+    background: rgba(0,0,0,.55);
+    padding: 7px 11px;
+    border-radius: 7px;
+    font-size: 11px;
+}
+
+.live-dot {
+    color: #7e95ad;
+}
+
+.live-dot.active {
+    color: #ff5353;
+    animation: blink 1s infinite;
+}
+
+@keyframes blink {
+    50% { opacity: .3; }
+}
+
+.detection {
+    position: absolute;
+    z-index: 2;
+    right: 13px;
+    top: 12px;
+    padding: 8px 13px;
+    border-radius: 8px;
+    background: rgba(0,229,160,.12);
+    color: #00e5a0;
+    border: 1px solid rgba(0,229,160,.3);
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.camera-bottom {
+    position: absolute;
+    z-index: 2;
+    bottom: 12px;
+    left: 13px;
+    right: 13px;
+    display: flex;
+    justify-content: space-between;
+    color: #b4c5d5;
+    font-size: 11px;
+}
+
+.camera-actions {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    gap: 9px;
+    margin-top: 15px;
+}
+
+.camera-action-btn {
+    padding: 10px 15px;
+    border: 1px solid #25506a;
+    border-radius: 9px;
+    background: #10283a;
+    color: white;
+    cursor: pointer;
+    font-size: 11px;
+    font-weight: 700;
+}
+
+.camera-action-btn:hover:not(:disabled) {
+    background: #173b52;
+}
+
+.camera-action-btn:disabled {
+    cursor: not-allowed;
+    opacity: .55;
+}
+
+/* ================= REMINDERS ================= */
+
+.reminder {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 13px;
+    background: #0a1624;
+    border: 1px solid #1a2d40;
+    border-radius: 11px;
+    margin-bottom: 10px;
+}
+
+.reminder-left {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.reminder-icon {
+    width: 38px;
+    height: 38px;
+    border-radius: 9px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.reminder-name {
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.reminder-time {
+    font-size: 11px;
+    color: #71869b;
+    margin-top: 3px;
+}
+
+.badge {
+    font-size: 9px;
+    padding: 5px 8px;
+    border-radius: 15px;
+}
+
+.taken {
+    background: rgba(0,229,160,.1);
+    color: #00e5a0;
+}
+
+.upcoming {
+    background: rgba(255,193,7,.1);
+    color: #ffc107;
+}
+
+/* ================= LOWER GRID ================= */
+
+.lower-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 18px;
+    margin-top: 18px;
+}
+
+/* ================= ACTIVITY ================= */
+
+.activity {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 16px;
+}
+
+.activity-line {
+    width: 2px;
+    background: #20374c;
+    position: relative;
+}
+
+.activity-line::before {
+    content: "";
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #00e5a0;
+    position: absolute;
+    top: 4px;
+    left: -3px;
+}
+
+.activity-text {
+    font-size: 12px;
+}
+
+.activity-time {
+    color: #61768a;
+    font-size: 10px;
+    margin-top: 3px;
+}
+
+/* ================= RISK ================= */
+
+.risk-circle {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    margin: 15px auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border: 8px solid #00b982;
+    box-shadow: 0 0 30px rgba(0,229,160,.12);
+}
+
+.risk-circle[data-risk="MODERATE"] {
+    border-color: #ffc107;
+    box-shadow: 0 0 30px rgba(255,193,7,.14);
+}
+
+.risk-circle[data-risk="HIGH"] {
+    border-color: #ff5353;
+    box-shadow: 0 0 30px rgba(255,83,83,.2);
+}
+
+.risk-circle[data-risk="UNKNOWN"] {
+    border-color: #71879e;
+    box-shadow: none;
+}
+
+.risk-circle strong {
+    font-size: 27px;
+}
+
+.risk-circle span {
+    color: #7890a4;
+    font-size: 10px;
+}
+
+.risk-text {
+    text-align: center;
+    color: #8da1b4;
+    font-size: 11px;
+}
+
+/* ================= CAREGIVER ================= */
+
+.caregiver {
+    display: flex;
+    align-items: center;
+    gap: 13px;
+}
+
+.caregiver-avatar {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: linear-gradient(135deg,#7357e8,#2376d9);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+}
+
+.caregiver-info h4 {
+    font-size: 13px;
+}
+
+.caregiver-info p {
+    color: #71879c;
+    font-size: 10px;
+    margin-top: 4px;
+}
+
+/* ================= ALERT MODAL ================= */
+
+.alert-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,.75);
+    z-index: 100;
+    align-items: center;
+    justify-content: center;
+}
+
+.alert-box {
+    width: 430px;
+    max-width: 90%;
+    background: #121d29;
+    border: 1px solid #ff4d4d;
+    border-radius: 20px;
+    padding: 30px;
+    text-align: center;
+    box-shadow: 0 0 70px rgba(255,50,50,.25);
+    animation: alertPop .3s ease;
+}
+
+@keyframes alertPop {
+    from {
+        transform: scale(.8);
+        opacity: 0;
+    }
+    to {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+.alert-symbol {
+    width: 75px;
+    height: 75px;
+    background: rgba(255,60,60,.12);
+    border: 2px solid #ff4d4d;
+    border-radius: 50%;
+    margin: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 35px;
+    animation: alertPulse 1s infinite;
+}
+
+@keyframes alertPulse {
+    50% {
+        box-shadow: 0 0 35px rgba(255,50,50,.5);
+    }
+}
+
+.alert-box h2 {
+    color: #ff5c5c;
+    margin-top: 20px;
+}
+
+.alert-box p {
+    color: #9caebe;
+    font-size: 13px;
+    line-height: 1.7;
+    margin: 12px 0 20px;
+}
+
+.alert-actions {
+    display: flex;
+    gap: 10px;
+}
+
+.alert-actions button {
+    flex: 1;
+    padding: 12px;
+    border-radius: 9px;
+    font-weight: bold;
+    border: none;
+    cursor: pointer;
+    color: white;
+}
+
+.dismiss {
+    background: #263545;
+}
+
+/* ================= RESPONSIVE ================= */
+
+@media(max-width:1100px) {
+
+    .stats {
+        grid-template-columns: repeat(2,1fr);
+    }
+
+    .lower-grid {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+@media(max-width:800px) {
+
+    .main {
+        padding: 20px;
+    }
+
+    .welcome-photo {
+        width: 120px;
+        height: 90px;
+    }
+
+    .dashboard-grid,
+    .lower-grid {
+        grid-template-columns: 1fr;
+    }
+
+}
+
+@media(max-width:500px) {
+
+    .stats {
+        grid-template-columns: 1fr;
+    }
+
+    .header h1 {
+        font-size: 20px;
+    }
+
+    .system-status {
+        display: none;
+    }
+
+    .welcome-copy {
+        max-width: 100%;
+        padding-right: 0;
+    }
+
+    .welcome-photo {
+        display: none;
+    }
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- ================= MAIN ================= -->
+
+<main class="main">
+
+    <!-- HEADER -->
+
+    <header class="header">
+
+        <div class="elderly-back-brand">
+            <a class="elderly-back-link" href="/" aria-label="Back to TRINETRA module selection">← Back to modules</a>
+            <div class="header-brand">
+
+                <img
+                    class="header-logo"
+                    src="{{ url_for('static', filename='trinetra-logo.png') }}"
+                    alt="TRINETRA — See, Protect, Empower">
+
+                <div>
+                    <h1>TRINETRA Safety Monitoring</h1>
+
+                    <p>
+                        Real-time elderly safety monitoring powered by AI
+                    </p>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="header-right">
+
+            <div class="system-status">
+
+                <div class="status-dot"></div>
+
+                <span id="systemStatusText">Video offline</span>
+
+            </div>
+
+            <form class="logout-form" method="post" action="{{ url_for('logout') }}">
+                <button class="logout-button" type="submit">LOG OUT</button>
+            </form>
+
+            <div class="profile">
+                {{ caregiver_name[0]|upper }}
+            </div>
+
+        </div>
+
+    </header>
+
+
+    <!-- WELCOME -->
+
+    <section class="welcome">
+
+        <div class="welcome-copy">
+
+            <h2>TRINETRA monitors your loved one's safety.</h2>
+
+            <p>
+                Track standing, walking, and lying from the demo video. A sustained low, horizontal posture triggers an automatic alarm.
+            </p>
+
+        </div>
+
+        <img
+            class="welcome-photo"
+            src="{{ url_for('static', filename='frontpage.jpg.png') }}"
+            alt="Caregiver supporting an elderly woman">
+
+        <div class="scan-line"></div>
+
+    </section>
+
+
+    <!-- STATISTICS -->
+
+    <section class="stats">
+
+        <div class="card">
+
+            <div class="stat-top">
+
+                <div>
+                    <div class="stat-label">CURRENT ACTIVITY</div>
+                    <div class="stat-number" id="activityStatus">
+                        Not monitoring
+                    </div>
+                </div>
+
+                <div class="stat-icon green">
+                    🧍
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <div class="card">
+
+            <div class="stat-top">
+
+                <div>
+                    <div class="stat-label">TODAY'S MEDICATION</div>
+                    <div class="stat-number">
+                        2 / 3
+                    </div>
+                </div>
+
+                <div class="stat-icon blue">
+                    💊
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <div class="card">
+
+            <div class="stat-top">
+
+                <div>
+                    <div class="stat-label">HYDRATION</div>
+                    <div class="stat-number">
+                        6 / 8
+                    </div>
+                </div>
+
+                <div class="stat-icon yellow">
+                    💧
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <div class="card">
+
+            <div class="stat-top">
+
+                <div>
+                    <div class="stat-label">SAFETY SCORE</div>
+                    <div class="stat-number">
+                        94%
+                    </div>
+                </div>
+
+                <div class="stat-icon green">
+                    🛡️
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- MAIN DASHBOARD -->
+
+    <section class="dashboard-grid">
+
+
+        <!-- CAMERA -->
+
+        <div class="section-card">
+
+            <div class="section-header">
+
+                <h3>🎞️ Video AI Monitoring</h3>
+
+                <span>
+                    VIDEO DEMO • SLOW FALL ANALYSIS
+                </span>
+
+            </div>
+
+
+            <div class="camera" id="cameraView">
+
+                <img
+                    class="camera-frame"
+                    id="processedFrame"
+                    alt="OpenCV-processed video frame"
+                    hidden>
+
+                <video
+                    id="cameraVideo"
+                    src="{{ url_for('static', filename='elder_safety_demo.mp4') }}"
+                    playsinline
+                    muted
+                    preload="metadata"
+                    hidden></video>
+                <audio
+                    id="fallAlarm"
+                    src="{{ url_for('static', filename='trinetra_alarm.wav') }}"
+                    preload="auto"
+                    loop></audio>
+                <canvas id="cameraCanvas" width="640" height="480" hidden></canvas>
+
+                <div class="camera-grid" id="cameraGrid"></div>
+
+                <div class="camera-label">
+                    <span class="live-dot" id="liveDot">●</span>
+                    <span id="cameraLabel">VIDEO OFF</span>
+                </div>
+
+                <div class="detection" id="detectionStatus">
+                    VIDEO READY
+                </div>
+
+                <div class="camera-bottom">
+
+                    <span>
+                        OpenCV: <span id="opencvStatus">Waiting</span>
+                    </span>
+
+                    <span>
+                        People: <span id="peopleCount">0</span>
+                    </span>
+
+                </div>
+
+            </div>
+
+            <div class="camera-actions">
+                <button class="camera-action-btn" id="startCameraBtn" type="button">
+                    ▶ START VIDEO MONITORING
+                </button>
+                <button class="camera-action-btn" id="stopCameraBtn" type="button" disabled>
+                    ■ STOP
+                </button>
+
+            </div>
+
+        </div>
+
+
+        <!-- REMINDERS -->
+
+        <div class="section-card">
+
+            <div class="section-header">
+
+                <h3>⏰ Today's Reminders</h3>
+
+                <span id="reminderSummary">TODAY'S REMINDERS</span>
+
+            </div>
+
+
+            <div class="reminder" data-reminder-time="08:00 AM">
+
+                <div class="reminder-left">
+
+                    <div class="reminder-icon blue">
+                        💊
+                    </div>
+
+                    <div>
+
+                        <div class="reminder-name">
+                            BP Tablet
+                        </div>
+
+                        <div class="reminder-time">
+                            08:00 AM • 1 Tablet
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <span class="badge taken">
+                    TAKEN
+                </span>
+
+            </div>
+
+
+            <div class="reminder" data-reminder-time="01:00 PM">
+
+                <div class="reminder-left">
+
+                    <div class="reminder-icon yellow">
+                        🍱
+                    </div>
+
+                    <div>
+
+                        <div class="reminder-name">
+                            Lunch
+                        </div>
+
+                        <div class="reminder-time">
+                            01:00 PM
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <span class="badge upcoming">
+                    UPCOMING
+                </span>
+
+            </div>
+
+
+            <div class="reminder" data-reminder-time="03:30 PM">
+
+                <div class="reminder-left">
+
+                    <div class="reminder-icon blue">
+                        💧
+                    </div>
+
+                    <div>
+
+                        <div class="reminder-name">
+                            Drink Water
+                        </div>
+
+                        <div class="reminder-time">
+                            03:30 PM
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <span class="badge upcoming">
+                    UPCOMING
+                </span>
+
+            </div>
+
+
+            <div class="reminder" data-reminder-time="08:00 PM">
+
+                <div class="reminder-left">
+
+                    <div class="reminder-icon blue">
+                        💊
+                    </div>
+
+                    <div>
+
+                        <div class="reminder-name">
+                            Night Medicine
+                        </div>
+
+                        <div class="reminder-time">
+                            08:00 PM • 1 Tablet
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <span class="badge upcoming">
+                    UPCOMING
+                </span>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- LOWER SECTION -->
+
+    <section class="lower-grid">
+
+
+        <!-- ACTIVITY -->
+
+        <div class="section-card">
+
+            <div class="section-header">
+
+                <h3>📊 Activity Timeline</h3>
+
+                <span>LIVE</span>
+
+            </div>
+
+
+            <div class="activity">
+
+                <div class="activity-line"></div>
+
+                <div>
+
+                    <div class="activity-text">
+                        Person detected standing
+                    </div>
+
+                    <div class="activity-time">
+                        Just now
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="activity">
+
+                <div class="activity-line"></div>
+
+                <div>
+
+                    <div class="activity-text">
+                        Walking detected
+                    </div>
+
+                    <div class="activity-time">
+                        5 minutes ago
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="activity">
+
+                <div class="activity-line"></div>
+
+                <div>
+
+                    <div class="activity-text">
+                        Medication confirmed
+                    </div>
+
+                    <div class="activity-time">
+                        8:02 AM
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="activity">
+
+                <div class="activity-line"></div>
+
+                <div>
+
+                    <div class="activity-text">
+                        Hydration reminder completed
+                    </div>
+
+                    <div class="activity-time">
+                        7:35 AM
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- AI INSIGHTS -->
+
+        <div class="section-card">
+
+            <div class="section-header">
+
+                <h3>🧠 AI Safety Insight</h3>
+
+                <span>TRINETRA AI</span>
+
+            </div>
+
+
+            <div class="risk-circle" id="riskCircle" data-risk="UNKNOWN">
+
+                <strong id="riskLevel">WAITING</strong>
+
+                <span>RISK LEVEL</span>
+
+            </div>
+
+
+            <div class="risk-text" id="riskInsight">
+
+                Start monitoring to assess movement-based safety risk.
+
+            </div>
+
+        </div>
+
+
+        <!-- CAREGIVER -->
+
+        <div class="section-card">
+
+            <div class="section-header">
+
+                <h3>👨‍👩‍👧 Caregiver</h3>
+
+                <span>CONNECTED</span>
+
+            </div>
+
+
+            <div class="caregiver">
+
+                <div class="caregiver-avatar">
+                    R
+                </div>
+
+                <div class="caregiver-info">
+
+                    <h4>{{ caregiver_name }}</h4>
+
+                    <p>
+                        Primary Caregiver
+                    </p>
+
+                    <p>
+                        📞 {{ caregiver_phone }}
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div style="
+                margin-top:22px;
+                padding:13px;
+                background:#091624;
+                border-radius:10px;
+                border:1px solid #1a3043;
+                font-size:11px;
+                color:#8196aa;
+            ">
+
+                🟢 Emergency contact ready
+
+                <br><br>
+
+                A possible fall triggers an on-screen alert
+                and an audible alarm.
+
+            </div>
+
+        </div>
+
+    </section>
+
+</main>
+
+
+<!-- ================= EMERGENCY MODAL ================= -->
+
+<div class="alert-overlay" id="alertOverlay">
+
+    <div class="alert-box">
+
+        <div class="alert-symbol">
+            ⚠️
+        </div>
+
+        <h2>FALL DETECTED</h2>
+
+        <p>
+
+            TRINETRA AI has detected a possible fall.
+
+            <br>
+
+            Please check on the person immediately.
+
+            <br><br>
+
+            <strong>Caregiver: {{ caregiver_name }}</strong>
+
+        </p>
+
+
+        <div class="alert-actions">
+
+            <button
+                class="dismiss"
+                onclick="closeAlert()">
+
+                DISMISS
+
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<script>
+
+const video = document.getElementById("cameraVideo");
+const fallAlarm = document.getElementById("fallAlarm");
+const canvas = document.getElementById("cameraCanvas");
+const processedFrame = document.getElementById("processedFrame");
+const startButton = document.getElementById("startCameraBtn");
+const stopButton = document.getElementById("stopCameraBtn");
+const detectionStatus = document.getElementById("detectionStatus");
+const cameraLabel = document.getElementById("cameraLabel");
+const liveDot = document.getElementById("liveDot");
+const opencvStatus = document.getElementById("opencvStatus");
+const systemStatusText = document.getElementById("systemStatusText");
+
+function updateReminderStatuses() {
+    const now = new Date();
+    const currentMinutes = now.getHours() * 60 + now.getMinutes();
+    let takenCount = 0;
+    let upcomingCount = 0;
+
+    document.querySelectorAll(".reminder[data-reminder-time]").forEach(reminder => {
+        const scheduledTime = reminder.dataset.reminderTime.match(
+            /^(\d{1,2}):(\d{2})\s*(AM|PM)$/i
+        );
+        if (!scheduledTime) {
+            console.error("Invalid reminder time:", reminder.dataset.reminderTime);
+            return;
+        }
+
+        let hours = Number(scheduledTime[1]) % 12;
+        if (scheduledTime[3].toUpperCase() === "PM") {
+            hours += 12;
+        }
+        const dueMinutes = hours * 60 + Number(scheduledTime[2]);
+        const taken = currentMinutes >= dueMinutes;
+        const badge = reminder.querySelector(".badge");
+
+        badge.textContent = taken ? "TAKEN" : "UPCOMING";
+        badge.classList.toggle("taken", taken);
+        badge.classList.toggle("upcoming", !taken);
+        taken ? takenCount++ : upcomingCount++;
+    });
+
+    document.getElementById("reminderSummary").textContent =
+        `${takenCount} TAKEN • ${upcomingCount} UPCOMING`;
+}
+
+let monitoring = false;
+let fallAlertShown = false;
+let sendingFrame = false;
+let videoEndedAt = null;
+
+async function startMonitoring() {
+    startButton.disabled = true;
+    cameraLabel.textContent = "STARTING VIDEO";
+    opencvStatus.textContent = "Waiting";
+    systemStatusText.textContent = "Starting video";
+
+    try {
+        fallAlarm.volume = 0;
+        await fallAlarm.play();
+        fallAlarm.pause();
+        fallAlarm.currentTime = 0;
+        fallAlarm.volume = 1;
+        if (video.error) {
+            throw new Error("The demo video could not be loaded.");
+        }
+        if (video.readyState === HTMLMediaElement.HAVE_NOTHING) {
+            await new Promise((resolve, reject) => {
+                video.addEventListener("loadedmetadata", resolve, { once: true });
+                video.addEventListener("error", () => reject(new Error("The demo video could not be loaded.")), { once: true });
+            });
+        }
+        const resetResponse = await fetch("/reset_monitoring", { method: "POST" });
+        const resetResult = await resetResponse.json();
+        if (!resetResponse.ok || !resetResult.success) {
+            throw new Error(resetResult.error || `Could not reset monitoring (${resetResponse.status}).`);
+        }
+        video.currentTime = 0;
+        videoEndedAt = null;
+        video.playbackRate = 0.5;
+        await video.play();
+        monitoring = true;
+        fallAlertShown = false;
+        stopButton.disabled = false;
+        cameraLabel.textContent = "VIDEO PLAYING";
+        liveDot.classList.add("active");
+        opencvStatus.textContent = "Connected";
+        systemStatusText.textContent = "Monitoring active";
+        await captureAndSendFrame();
+    } catch (error) {
+        stopMonitoring();
+        setVideoError(`Could not start the demo video: ${error.message}`);
+    }
+}
+
+async function captureAndSendFrame() {
+    if (!monitoring || sendingFrame || (video.paused && !video.ended) || video.readyState < HTMLMediaElement.HAVE_CURRENT_DATA) {
+        if (monitoring) {
+            window.setTimeout(captureAndSendFrame, 250);
+        }
+        return;
+    }
+
+    sendingFrame = true;
+    try {
+        const context = canvas.getContext("2d");
+        const videoTime = video.currentTime + (
+            video.ended && videoEndedAt !== null
+                ? (performance.now() - videoEndedAt) / 1000
+                : 0
+        );
+        context.drawImage(video, 0, 0, canvas.width, canvas.height);
+
+        const response = await fetch("/process_frame", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+                image: canvas.toDataURL("image/jpeg", 0.75),
+                video_time: videoTime
+            })
+        });
+        const result = await response.json();
+        if (!response.ok || !result.success) {
+            throw new Error(result.error || `Frame processing failed (${response.status}).`);
+        }
+
+        processedFrame.src = `data:image/jpeg;base64,${result.image}`;
+        processedFrame.hidden = false;
+        document.getElementById("cameraGrid").hidden = true;
+        document.getElementById("peopleCount").textContent = result.people;
+        detectionStatus.textContent = result.status;
+        document.getElementById("activityStatus").textContent = result.status;
+        const riskCircle = document.getElementById("riskCircle");
+        riskCircle.dataset.risk = result.risk_level;
+        document.getElementById("riskLevel").textContent = result.risk_level;
+        document.getElementById("riskInsight").textContent = result.risk_insight;
+        opencvStatus.textContent = "Processing video";
+        systemStatusText.textContent = "Monitoring active";
+        detectionStatus.style.color = result.alert ? "#ff5252" : "";
+
+        if (result.alert) {
+            if (!fallAlertShown) {
+                fallAlertShown = true;
+                document.getElementById("alertOverlay").style.display = "flex";
+                playAlarm().catch(error => {
+                    console.error("Could not play the fall alarm:", error);
+                    detectionStatus.textContent = `ALARM SOUND ERROR: ${error.message}`;
+                    detectionStatus.style.color = "#ff5252";
+                });
+            }
+        } else if (fallAlertShown) {
+            detectionStatus.textContent = "LYING";
+            detectionStatus.style.color = "#ff5252";
+            document.getElementById("activityStatus").textContent = "LYING";
+            riskCircle.dataset.risk = "HIGH";
+            document.getElementById("riskLevel").textContent = "HIGH";
+            document.getElementById("riskInsight").textContent =
+                "Possible fall detected. Check on the person immediately.";
+        }
+    } catch (error) {
+        opencvStatus.textContent = "Frame error";
+        systemStatusText.textContent = "Frame processing error";
+        detectionStatus.textContent = error.message;
+        detectionStatus.style.color = "#ff5252";
+        console.error("TRINETRA frame processing error:", error);
+    } finally {
+        sendingFrame = false;
+        if (monitoring) {
+            window.setTimeout(captureAndSendFrame, 150);
+        }
+    }
+}
+
+function stopMonitoring() {
+    monitoring = false;
+    sendingFrame = false;
+    videoEndedAt = null;
+    video.pause();
+    video.currentTime = 0;
+    stopAlarm();
+    startButton.disabled = false;
+    stopButton.disabled = true;
+    processedFrame.hidden = true;
+    document.getElementById("cameraGrid").hidden = false;
+    document.getElementById("peopleCount").textContent = "0";
+    cameraLabel.textContent = "VIDEO OFF";
+    liveDot.classList.remove("active");
+    opencvStatus.textContent = "Stopped";
+    systemStatusText.textContent = "Video offline";
+    document.getElementById("activityStatus").textContent = "Not monitoring";
+    document.getElementById("riskCircle").dataset.risk = "UNKNOWN";
+    document.getElementById("riskLevel").textContent = "WAITING";
+    document.getElementById("riskInsight").textContent =
+        "Start the demo video to assess movement-based safety risk.";
+    detectionStatus.textContent = "VIDEO READY";
+    detectionStatus.style.color = "";
+    fallAlertShown = false;
+    document.getElementById("alertOverlay").style.display = "none";
+}
+
+function setVideoError(message) {
+    startButton.disabled = false;
+    stopButton.disabled = true;
+    cameraLabel.textContent = "VIDEO ERROR";
+    liveDot.classList.remove("active");
+    opencvStatus.textContent = "Unavailable";
+    systemStatusText.textContent = "Video unavailable";
+    document.getElementById("riskCircle").dataset.risk = "UNKNOWN";
+    document.getElementById("riskLevel").textContent = "UNKNOWN";
+    document.getElementById("riskInsight").textContent =
+        "Video unavailable. Risk cannot be assessed until the demo video loads.";
+    detectionStatus.textContent = message;
+    detectionStatus.style.color = "#ff5252";
+}
+
+function closeAlert() {
+    document.getElementById("alertOverlay").style.display = "none";
+    stopAlarm();
+}
+
+async function playAlarm() {
+    if (!fallAlarm.paused) {
+        return;
+    }
+    fallAlarm.currentTime = 0;
+    await fallAlarm.play();
+}
+
+function stopAlarm() {
+    fallAlarm.pause();
+    fallAlarm.currentTime = 0;
+}
+
+startButton.addEventListener("click", startMonitoring);
+stopButton.addEventListener("click", stopMonitoring);
+
+window.addEventListener("beforeunload", stopMonitoring);
+
+video.addEventListener("ended", () => {
+    if (monitoring) {
+        videoEndedAt = performance.now();
+        cameraLabel.textContent = "VIDEO COMPLETE • ANALYZING";
+    }
+});
+
+updateReminderStatuses();
+window.setInterval(updateReminderStatuses, 60_000);
+
+</script>
+
+</body>
+</html>
