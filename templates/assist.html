@@ -1,0 +1,146 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#0b1728">
+    <title>TRINETRA | Voice Assistance</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='assist.css') }}">
+    <script defer src="{{ url_for('static', filename='assist.js', v='20261003-five-second-alarm') }}"></script>
+</head>
+<body>
+    <div class="assist-shell">
+        <header class="assist-header">
+            <div class="assist-header-brand">
+                <a class="back-link" href="/" aria-label="Back to TRINETRA module selection">← Back to modules</a>
+                <a class="brand" href="/" aria-label="TRINETRA home">
+                    <img src="{{ url_for('static', filename='trinetra-logo.png') }}" alt="TRINETRA project logo">
+                    <span><strong>TRINETRA</strong><small>SEE · PROTECT · EMPOWER</small></span>
+                </a>
+            </div>
+            <div class="header-center"><p class="eyebrow">ACCESSIBLE CARE MODULE</p><h1>Physical Disability Assist</h1></div>
+        </header>
+
+        <main>
+            <section class="assist-hero">
+                <div>
+                    <p class="eyebrow">A HELPING HAND, THROUGH YOUR VOICE</p>
+                    <h2>Your Voice. Your Safety.<br><span>Your Connection.</span></h2>
+                    <p>Speak a request or use a large button. TRINETRA sends the request to the caregiver panel on this page.</p>
+                </div>
+                <div class="hero-mic" aria-hidden="true"><span>🎙️</span><i></i><i></i></div>
+            </section>
+
+            <div class="assist-grid">
+                <section class="assist-card voice-card">
+                    <div class="section-heading">
+                        <div><p class="eyebrow">HANDS-FREE HELP</p><h2>Voice assistant</h2></div>
+                        <span id="voiceReadyBadge" class="status-chip"><i></i> CHECKING</span>
+                    </div>
+                    <button id="listenButton" class="listen-button" type="button" aria-label="Tap to speak a request">
+                        <span class="listen-mic" aria-hidden="true">🎙️</span>
+                        <strong id="listenButtonText">TAP TO SPEAK</strong>
+                        <small id="voiceStatus" role="status">Ready to listen</small>
+                    </button>
+                    <p class="transcript-label">WHAT I HEARD</p>
+                    <div id="transcriptOutput" class="transcript-box" aria-live="polite">Your words will appear here.</div>
+                    <div id="requestFeedback" class="feedback-box" role="status">Choose a voice command or an assistance button.</div>
+                    <p class="section-hint">Voice needs microphone permission and an internet connection. Chrome or Edge is recommended.</p>
+                    <div class="command-hints">
+                        <p>Try saying</p>
+                        <span>“I need water.”</span><span>“Help me get up.”</span>
+                        <span>“I fell down.”</span><span>“I am safe.”</span>
+                    </div>
+                </section>
+
+                <section class="assist-card user-status-card">
+                    <div class="section-heading"><div><p class="eyebrow">YOUR CONNECTION</p><h2>TRINETRA Assist</h2></div><span class="connected-chip"><i></i> READY</span></div>
+                    <label class="user-name-field" for="userNameInput">Your name
+                        <input id="userNameInput" type="text" maxlength="80" value="Demo User" autocomplete="name">
+                    </label>
+                    <div class="status-lines">
+                        <div><span><b class="status-icon">🎙</b>Voice assistant</span><strong id="voiceAvailability">Checking browser…</strong></div>
+                        <div><span><b class="status-icon">📍</b>Location</span><strong id="locationAvailability">Not requested</strong></div>
+                        <div><span><b class="status-icon">👨‍👩‍👦</b>Caregiver</span><strong class="green-text">Connected to demo panel</strong></div>
+                    </div>
+                    <div class="location-card">
+                        <div class="location-card-heading"><strong>Current location</strong><span id="locationTime">Not shared</span></div>
+                        <p id="locationDetails">Location is requested only when you send a request.</p>
+                    </div>
+                    <div class="last-request-card">
+                        <p class="eyebrow">LAST REQUEST</p>
+                        <strong id="lastRequestText">None yet</strong>
+                        <span id="lastRequestStatus">Requests are sent to the caregiver panel below.</span>
+                    </div>
+                </section>
+            </div>
+
+            <section class="assist-card quick-card">
+                <div class="section-heading"><div><p class="eyebrow">ONE-TOUCH HELP</p><h2>Quick assistance</h2></div><p class="section-hint">Large buttons work even when voice input is unavailable.</p></div>
+                <div class="quick-grid">
+                    <button class="quick-button" type="button" data-action="normal" data-message="I need water." data-spoken="Your request for water has been sent to your caregiver."><span>💧</span><strong>WATER</strong><small>Ask for a drink</small></button>
+                    <button class="quick-button" type="button" data-action="normal" data-message="I need my medicine." data-spoken="Your medicine request has been sent to your caregiver."><span>💊</span><strong>MEDICINE</strong><small>Ask for medicine</small></button>
+                    <button class="quick-button" type="button" data-action="normal" data-message="I need food." data-spoken="Your food request has been sent to your caregiver."><span>🍲</span><strong>FOOD</strong><small>Ask for a meal</small></button>
+                    <button class="quick-button" type="button" data-action="normal" data-message="Please contact my caregiver." data-spoken="Your caregiver has been contacted."><span>👨‍👩‍👦</span><strong>CAREGIVER</strong><small>Ask them to come</small></button>
+                    <button class="quick-button emergency-quick" type="button" data-action="confirm-emergency"><span>🆘</span><strong>EMERGENCY SOS</strong><small>Send an urgent alert</small></button>
+                    <button class="quick-button safe-quick" type="button" data-action="check-in" data-message="I am safe."><span>👍</span><strong>I’M SAFE</strong><small>Send a safety check-in</small></button>
+                </div>
+            </section>
+
+            <section class="assist-card emergency-strip">
+                <div><p class="eyebrow">NEED IMMEDIATE HELP?</p><h2>Send an emergency SOS</h2><p>This sends a caregiver alert. It does not call emergency services.</p></div>
+                <button id="sosButton" class="sos-button" type="button"><span>🚨</span><span>EMERGENCY SOS</span></button>
+            </section>
+
+            <div class="assist-grid lower-assist-grid">
+                <section class="assist-card test-card">
+                    <div class="section-heading"><div><p class="eyebrow">DEMONSTRATION CONTROLS</p><h2>Test mode</h2></div><span class="mode-label">REAL GPS DEFAULT</span></div>
+                    <p class="section-hint">Real browser location is tried first. Turn on test mode to attach example coordinates if GPS is unavailable.</p>
+                    <label class="toggle-row" for="testModeToggle"><span><strong>Enable manual test location</strong><small>Use only for demonstrating this prototype.</small></span><input id="testModeToggle" type="checkbox"></label>
+                    <div id="testLocationFields" class="test-fields" hidden>
+                        <label>Latitude<input id="testLatitude" type="number" min="-90" max="90" step="any" value="13.1600"></label>
+                        <label>Longitude<input id="testLongitude" type="number" min="-180" max="180" step="any" value="79.9800"></label>
+                    </div>
+                    <div class="test-buttons">
+                        <button class="button button-soft" type="button" data-test="normal">Simulate normal</button>
+                        <button class="button button-soft" type="button" data-test="urgent">Simulate urgent</button>
+                        <button class="button button-soft" type="button" data-test="emergency">Simulate emergency</button>
+                        <button class="button button-soft" type="button" data-test="check_in">Simulate safety check-in</button>
+                    </div>
+                </section>
+
+                <section class="assist-card history-card">
+                    <div class="section-heading"><div><p class="eyebrow">RECENT ACTIVITY</p><h2>Request history</h2></div><span id="requestCount" class="count-chip">0 REQUESTS</span></div>
+                    <div id="requestHistory" class="request-list" aria-live="polite"><p class="empty-state">No assistance requests yet.</p></div>
+                </section>
+            </div>
+
+            <section class="assist-card caregiver-card" aria-labelledby="caregiverHeading">
+                <div class="section-heading"><div><p class="eyebrow">LIVE REQUESTS · UPDATES EVERY 4 SECONDS</p><h2 id="caregiverHeading">TRINETRA Caregiver Panel</h2></div><span id="caregiverConnection" class="status-chip"><i></i> CONNECTING</span></div>
+                <p class="section-hint">Incoming requests appear here while this page is open. Caregiver acknowledgement updates the request history.</p>
+                <div id="caregiverRequests" class="caregiver-requests" aria-live="polite"><p class="empty-state">Waiting for requests.</p></div>
+            </section>
+
+            <section id="emergencyBanner" class="emergency-banner" role="alert" hidden>
+                <span class="emergency-mark">!</span>
+                <div><p class="eyebrow">EMERGENCY REQUEST</p><h2 id="emergencyTitle">Caregiver alert received</h2><p id="emergencyDetails"></p></div>
+                <button id="dismissEmergency" class="button button-danger" type="button">Dismiss</button>
+            </section>
+
+            <footer class="assist-footer">TRINETRA is a student prototype, not an emergency service. For immediate danger, use local emergency services.</footer>
+        </main>
+    </div>
+
+    <dialog id="sosDialog" class="sos-dialog" aria-labelledby="sosDialogTitle">
+        <form method="dialog">
+            <span class="dialog-icon" aria-hidden="true">🚨</span>
+            <h2 id="sosDialogTitle">Send an emergency alert?</h2>
+            <p>This will notify the caregiver panel. It will not call emergency services.</p>
+            <div class="dialog-actions">
+                <button id="cancelSosButton" class="button button-soft" value="cancel">Cancel</button>
+                <button id="confirmSosButton" class="button button-danger" value="send">Send alert</button>
+            </div>
+        </form>
+    </dialog>
+</body>
+</html>

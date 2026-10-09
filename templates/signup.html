@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Caregiver Sign Up | TRINETRA</title>
+    <style>
+        * { box-sizing: border-box; }
+        body {
+            min-height: 100vh;
+            margin: 0;
+            display: grid;
+            place-items: center;
+            padding: 24px;
+            background: #07111f;
+            color: #eaf2ff;
+            font-family: "Segoe UI", Arial, sans-serif;
+        }
+        .auth-card {
+            width: min(100%, 430px);
+            padding: 34px;
+            background: #0c1a2a;
+            border: 1px solid #1b384e;
+            border-radius: 18px;
+            box-shadow: 0 24px 70px rgba(0,0,0,.28);
+        }
+        .brand { color: #00e5a0; font-size: 12px; font-weight: 700; letter-spacing: 2px; }
+        .brand-logo {
+            display: block;
+            width: 180px;
+            height: 180px;
+            margin: 0 auto 18px;
+            object-fit: contain;
+            background: #fff;
+            border-radius: 14px;
+        }
+        h1 { margin: 12px 0 8px; font-size: 27px; }
+        .intro, .account-note { color: #8ba0b6; font-size: 13px; line-height: 1.6; }
+        label { display: block; margin: 20px 0 7px; color: #b9c9d8; font-size: 12px; }
+        input {
+            width: 100%;
+            padding: 12px 13px;
+            border: 1px solid #294256;
+            border-radius: 9px;
+            outline: none;
+            background: #091624;
+            color: #eaf2ff;
+            font-size: 14px;
+        }
+        input:focus { border-color: #00c995; }
+        button {
+            width: 100%;
+            margin-top: 24px;
+            padding: 13px;
+            border: 0;
+            border-radius: 9px;
+            background: linear-gradient(135deg,#00c995,#00a8ff);
+            color: #06131e;
+            font-size: 13px;
+            font-weight: 700;
+            cursor: pointer;
+        }
+        .flash { margin-top: 16px; color: #ff8585; font-size: 13px; line-height: 1.5; }
+        .account-note { margin: 21px 0 0; text-align: center; }
+        a { color: #00e5a0; text-decoration: none; }
+        a:hover { text-decoration: underline; }
+    </style>
+</head>
+<body>
+    <main class="auth-card">
+        <img
+            class="brand-logo"
+            src="{{ url_for('static', filename='trinetra-logo.png') }}"
+            alt="TRINETRA — See, Protect, Empower">
+        <div class="brand">TRINETRA · SAFETY INTELLIGENCE</div>
+        <h1>Create caregiver account</h1>
+        <p class="intro">Register your caregiver name and phone number to access the safety dashboard.</p>
+
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% for category, message in messages %}
+                <div class="flash {{ category }}" role="alert">{{ message }}</div>
+            {% endfor %}
+        {% endwith %}
+
+        <form method="post" action="{{ url_for('signup') }}">
+            <label for="name">Caregiver name</label>
+            <input id="name" name="name" type="text" maxlength="80" autocomplete="name" required>
+
+            <label for="phone">Phone number</label>
+            <input id="phone" name="phone" type="tel" autocomplete="tel" placeholder="+1 555 123 4567" required>
+
+            <button type="submit">CREATE ACCOUNT</button>
+        </form>
+
+        <p class="account-note">Already registered? <a href="{{ url_for('login') }}">Log in</a></p>
+    </main>
+</body>
+</html>
