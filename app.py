@@ -253,10 +253,11 @@ def acknowledge_alert(alert_id):
     return jsonify(error="Alert not found."), 404
 
 
+app.wsgi_app = DispatcherMiddleware(
+    app.wsgi_app,
+    {"/elderly": LazyElderlyApplication()},
+)
+
 if __name__ == "__main__":
-    app.wsgi_app = DispatcherMiddleware(
-        app.wsgi_app,
-        {"/elderly": LazyElderlyApplication()},
-    )
     print("TRINETRA Safety is ready at http://127.0.0.1:5000")
-    app.run(host="127.0.0.1", port=5000, debug=False)
+    app.run(host="0.0.0.0", port=5000, debug=False)
