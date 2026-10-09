@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#0b1728">
+    <title>TRINETRA | Safety for Every Generation</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='home.css', v='20261003-large-logo-v2') }}">
+</head>
+<body>
+    <main class="landing-shell">
+        <header class="landing-header">
+            <a class="brand" href="/" aria-label="TRINETRA home">
+                <img src="{{ url_for('static', filename='trinetra-logo.png') }}" alt="TRINETRA project logo">
+                <span class="brand-name">TRINETRA<small>THREE EYES, ONE VISION: PROTECTING EVERY LIFE</small></span>
+            </a>
+            <span class="header-tag"><span class="live-dot"></span> FAMILY SAFETY PLATFORM</span>
+        </header>
+
+        <section class="hero" aria-labelledby="hero-title">
+            <div class="hero-copy">
+                <p class="eyebrow">ONE CARING PLATFORM · THREE SAFETY MODULES</p>
+                <h1 id="hero-title">Three Eyes One Vision: Protecting Every Life</h1>
+                <p class="hero-description">Choose a monitoring module to help keep the people you love safer, at home and beyond.</p>
+            </div>
+            <div class="hero-emblem" aria-hidden="true">
+                <div class="orbit orbit-outer"></div>
+                <div class="orbit orbit-inner"></div>
+                <img src="{{ url_for('static', filename='trinetra-logo.png') }}" alt="">
+            </div>
+        </section>
+
+        <section class="module-section" aria-labelledby="modules-heading">
+            <div class="section-heading">
+                <div>
+                    <p class="eyebrow">YOUR SAFETY WORKSPACE</p>
+                    <h2 id="modules-heading">Choose a module</h2>
+                </div>
+                <span class="module-count">03 MODULES</span>
+            </div>
+
+            <div class="module-grid">
+                <article class="module-card elder-card">
+                    <div class="card-topline"><span class="module-icon elder-icon" aria-hidden="true">♡</span><span class="module-label">ELDERLY CARE</span></div>
+                    <div class="module-photo elder-photo">
+                        <img src="{{ url_for('static', filename='frontpage.jpg.png') }}" alt="Elderly person at home with a caregiver">
+                        <span class="photo-caption">WELLNESS · MOVEMENT · ALERTS</span>
+                    </div>
+                    <h3>Elderly Safety</h3>
+                    <p>Monitor movement from the demo video and raise an alert when a possible fall is detected.</p>
+                    <ul class="feature-list">
+                        <li><span>✓</span> Walking, standing and lying detection</li>
+                        <li><span>✓</span> Audible fall alert and caregiver notice</li>
+                        <li><span>✓</span> Daily reminders and safety overview</li>
+                    </ul>
+                    <a class="module-link elder-link" href="/elderly/"><span>Open Elderly Safety</span><span aria-hidden="true">→</span></a>
+                    <p class="module-footnote"><span class="link-dot"></span> Caregiver sign-in required</p>
+                </article>
+
+                <article class="module-card child-card">
+                    <div class="card-topline"><span class="module-icon child-icon" aria-hidden="true">⌖</span><span class="module-label">CHILD PROTECTION</span></div>
+                    <div class="module-photo child-photo">
+                        <img src="{{ url_for('static', filename='child-safety.png') }}" alt="Child playing in a safe outdoor space">
+                        <span class="photo-caption">HOME · GPS · SAFE ZONE</span>
+                    </div>
+                    <h3>Child Safety</h3>
+                    <p>Set a safe radius around home, watch a live location on the map and alert on a boundary crossing.</p>
+                    <ul class="feature-list">
+                        <li><span>✓</span> Live GPS tracking and home geofence</li>
+                        <li><span>✓</span> Outside-zone sound and screen alert</li>
+                        <li><span>✓</span> Test mode for an easy demonstration</li>
+                    </ul>
+                    <a class="module-link child-link" href="/child"><span>Open Child Safety</span><span aria-hidden="true">→</span></a>
+                    <p class="module-footnote"><span class="link-dot"></span> Real GPS is the default</p>
+                </article>
+
+                <article class="module-card assist-card">
+                    <div class="card-topline"><span class="module-icon assist-icon" aria-hidden="true">♫</span><span class="module-label">ACCESSIBLE CARE</span></div>
+                    <div class="module-photo assist-photo">
+                        <img src="{{ url_for('static', filename='disability-assist.png') }}" alt="Caregiver assisting a wheelchair user at home">
+                        <span class="photo-caption">YOUR VOICE · YOUR SAFETY · YOUR CONNECTION</span>
+                    </div>
+                    <h3>Physical Disability Assist</h3>
+                    <p>Speak or tap to request caregiver assistance, check in as safe, or send an emergency alert.</p>
+                    <ul class="feature-list">
+                        <li><span>✓</span> Voice commands and large quick actions</li>
+                        <li><span>✓</span> Normal, urgent and emergency requests</li>
+                        <li><span>✓</span> Caregiver dashboard and request history</li>
+                    </ul>
+                    <a class="module-link assist-link" href="/assist"><span>Open Voice Assistance</span><span aria-hidden="true">→</span></a>
+                    <p class="module-footnote"><span class="link-dot"></span> Voice is optional · Buttons always available</p>
+                </article>
+            </div>
+        </section>
+
+        <footer class="landing-footer">
+            <span><strong>TRINETRA</strong> · Integrated family safety prototype</span>
+            <span>Designed to help you care with confidence.</span>
+        </footer>
+    </main>
+</body>
+</html>
